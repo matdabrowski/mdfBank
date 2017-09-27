@@ -4,25 +4,31 @@
 
  How to:
 
- First clone all repos and run:
+ First clone all repos
+ 
+ next install mongodb on docker
+ 
+ `$ docker run --name mongo -p 32768:27017 -d mongo`
+ 
+ and run:
 
  `$ cd mdfBank/`
 
- `$ ./localRun.sh start`
+ `$ ./runLocal.sh start`
 
  to stop run:
 
- `$ ./localRun.sh stop`
+ `$ ./runLocal.sh stop`
 
  You can also reload module
 
- `$ ./localRun.sh down moduleName`
+ `$ ./runLocal.sh down moduleName`
 
- `$ ./localRun.sh up moduleName`
+ `$ ./runLocal.sh up moduleName`
 
  or just reload
 
- `$ ./localRun.sh reload moduleName`
+ `$ ./runLocal.sh reload moduleName`
 
  To launch in browser use example url:
 

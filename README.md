@@ -30,10 +30,12 @@
 
  `$ ./runLocal.sh reload moduleName`
 
- To launch in browser use example url:
+ To launch in browser use swagger url:
 
- [localhost:8080/customer/data/1](http://localhost:8080/customer/data/1)
+ [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+ 
+ 
 
  To see Eureka panel use:
 
- [Eureka](http://localhost:8761)
+ [Go to Eureka](http://localhost:8761)

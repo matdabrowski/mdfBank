@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		maven { url "http://repo.spring.io/snapshot" }
+		maven { url "http://repo.spring.io/milestone" }
+		maven { url "http://repo.spring.io/release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+group = 'mdf.bank.adminconsole'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" }
+	maven { url "http://repo.spring.io/release" }
+}
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR3'
+	}
+}
+
+
+dependencies {
+	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+
+	compile 'de.codecentric:spring-boot-admin-server:1.5.4'
+	compile 'de.codecentric:spring-boot-admin-server-ui:1.5.4'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

@@ -34,8 +34,11 @@
 
  [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
  
- 
-
  To see Eureka panel use:
 
  [Go to Eureka](http://localhost:8761)
+ 
+ To see Spring boot admin
+  
+ [Spring boot admin](http://localhost:8090)
+ 

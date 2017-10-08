@@ -4,8 +4,9 @@ runCommand=$1
 singleModuleName=$2
 
 if [[ -z  $runCommand  ]] ; then
-	echo "usage: run.sh  start | stop | restart"
-	echo "   or: run.sh  up | down | reload [moduleName]"
+	echo "usage: runLocal.sh  start | stop | restart"
+	echo "   or: runLocal.sh  up | down | reload [moduleName]"
+	echo "   or: runLocal.sh  startAdmin | stopAdmin"
 	exit 1
 fi
 
@@ -21,7 +22,7 @@ function run {
 	do
 		echo "# Start module $module"
 		cd ../$module
-		./gradlew build
+		./gradlew build > /dev/null
 		mkdir -p ../mdfBank/build/$module
 		cp build/libs/$module-$VERSION.jar ../mdfBank/build/$module/$module-$VERSION.jar
 		cd ../mdfBank/build/$module
@@ -53,7 +54,7 @@ function upModule {
 	local module=$1
 	echo "# up module $module"
 	cd ../$module
-	./gradlew build
+	./gradlew build > /dev/null
 	mkdir -p ../mdfBank/build/$module
 	cp build/libs/$module-$VERSION.jar ../mdfBank/build/$module/$module-$VERSION.jar
 	cd ../mdfBank/build/$module
@@ -104,3 +105,22 @@ if [ "$runCommand" == "reload" ] ; then
 	downModule $singleModuleName
 	upModule $singleModuleName
 fi
+
+if [ "$runCommand" == "startAdmin" ] ; then
+    echo "# Start Admin Console"
+	cd adminConsole/
+	./gradlew build > /dev/null
+	mkdir -p ../build/adminConsole
+	cp build/libs/adminConsole-$VERSION.jar ../build/adminConsole/adminConsole-$VERSION.jar
+	cd ../build/adminConsole
+	java -jar adminConsole-$VERSION.jar 2>&1 > /dev/null &
+	echo $!>pid.pid
+	cd ..
+fi
+
+if [ "$runCommand" == "stopAdmin" ] ; then
+    echo "# Stop Admin Console"
+    pid="$(cat build/adminConsole/pid.pid)"
+    kill $pid
+fi
+

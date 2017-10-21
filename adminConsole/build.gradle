@@ -31,16 +31,19 @@ repositories {
 
 dependencyManagement {
 	imports {
-		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR3'
+		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR4'
 	}
 }
 
 
 dependencies {
-	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+	compile 'org.springframework.cloud:spring-cloud-starter-turbine'
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
 
 	compile 'de.codecentric:spring-boot-admin-server:1.5.4'
 	compile 'de.codecentric:spring-boot-admin-server-ui:1.5.4'
+	compile 'de.codecentric:spring-boot-admin-server-ui-hystrix:1.5.4'
+    compile 'de.codecentric:spring-boot-admin-server-ui-turbine:1.5.4'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

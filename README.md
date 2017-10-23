@@ -1,16 +1,32 @@
 # MDF Bank - Microservice demo app
 
  > Work in progress...
+ 
+Components:
 
- How to:
+- Discovery with Eureka
+- Spring Boot Admin
+- Hystrix 
+- HystrixDashboard (inside SBA)
+- Turbine (inside SBA)
+- Swagger
+- Spring RestTemplate with Ribbon
+- Spring boot/cloud on every app with actuator
 
- First clone all repos
+
+ How to run:
+
+ First clone repo
  
  next install mongodb on docker
  
  `$ docker run --name mongo -p 32768:27017 -d mongo`
  
  and run:
+ 
+ inside Intellij Idea
+ 
+ or
 
  `$ cd mdfBank/`
 

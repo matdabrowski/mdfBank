@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8-alpine
 COPY build/libs/mdfCustomer-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8085

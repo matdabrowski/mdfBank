@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#######################################
+#       It doesn't work anymore       #
+#          use docker-compose         #
+#######################################
+
 runCommand=$1
 singleModuleName=$2
 

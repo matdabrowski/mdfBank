@@ -1,0 +1,36 @@
+mongo:
+  image: mongo
+  ports:
+  - "32768:27017"
+discovery:
+  build: mdfDiscovery
+  ports:
+  - "8761:8761"
+console:
+  build: adminConsole
+  ports:
+  - "8090:8090"
+core-system:
+  build: mdfCoreSystem
+  ports:
+  - "8084:8084"
+customer:
+  build: mdfCustomer
+  ports:
+  - "8085:8085"
+loan-deposit:
+  build: mdfLoanAndDeposit
+  ports:
+  - "8083:8083"
+security:
+  build: mdfSecurity
+  ports:
+  - "8082:8082"
+transfer:
+  build: mdfTransfer
+  ports:
+  - "8081:8081"
+web-app-backend:
+  build: mdfWebAppBackend
+  ports:
+  - "8080:8080"

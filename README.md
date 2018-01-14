@@ -12,6 +12,7 @@ Components:
 - Swagger
 - Spring RestTemplate with Ribbon
 - Spring boot/cloud on every app with actuator
+- Docker compose
 
  How to run:
 

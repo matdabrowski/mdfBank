@@ -1,22 +1,24 @@
-package mdf.bank.mdfwebappbackend.core.service;
+package mdf.bank.mdfwebappbackend.infrastructure.customer.dao;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import mdf.bank.mdfwebappbackend.domain.customer.model.Customer;
-import org.springframework.stereotype.Service;
+import mdf.bank.mdfwebappbackend.domain.customer.dao.CustomerDataDao;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 /**
  * @author Mateusz Dąbrowski
  */
-@Service
-public class CustomerDataService {
+@Repository
+public class CustomerDataDaoImpl implements CustomerDataDao {
 
 	private final RestTemplate restTemplate;
 
-	public CustomerDataService(RestTemplate restTemplate) {
+	public CustomerDataDaoImpl(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 
+	@Override
 	@HystrixCommand
 	public Customer getCustomerData(int login) {
 		return restTemplate

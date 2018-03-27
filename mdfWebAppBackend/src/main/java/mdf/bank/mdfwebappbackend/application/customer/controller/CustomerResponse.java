@@ -1,4 +1,4 @@
-package mdf.bank.mdfwebappbackend.domain.customer.controller;
+package mdf.bank.mdfwebappbackend.application.customer.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

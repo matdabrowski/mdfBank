@@ -1,6 +1,6 @@
-package mdf.bank.mdfwebappbackend.domain.customer.controller;
+package mdf.bank.mdfwebappbackend.application.customer.controller;
 
-import mdf.bank.mdfwebappbackend.core.service.CustomerDataService;
+import mdf.bank.mdfwebappbackend.domain.customer.dao.CustomerDataDao;
 import mdf.bank.mdfwebappbackend.domain.customer.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 class CustomerController {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-	private final CustomerDataService customerDataService;
+	private final CustomerDataDao customerDataService;
 
-	public CustomerController(CustomerDataService customerDataService) {
+	public CustomerController(CustomerDataDao customerDataService) {
 		this.customerDataService = customerDataService;
 	}
 

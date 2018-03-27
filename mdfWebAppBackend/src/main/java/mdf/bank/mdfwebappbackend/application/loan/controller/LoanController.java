@@ -1,9 +1,9 @@
-package mdf.bank.mdfwebappbackend.domain.loan.controller;
+package mdf.bank.mdfwebappbackend.application.loan.controller;
 
-import mdf.bank.mdfwebappbackend.core.service.CustomerDataService;
+import mdf.bank.mdfwebappbackend.domain.customer.dao.CustomerDataDao;
 import mdf.bank.mdfwebappbackend.domain.customer.model.Customer;
+import mdf.bank.mdfwebappbackend.domain.loan.dao.LoanDao;
 import mdf.bank.mdfwebappbackend.domain.loan.model.Loan;
-import mdf.bank.mdfwebappbackend.domain.loan.service.LoanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +22,11 @@ class LoanController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoanController.class);
 
-	private final LoanService loanService;
-	private final CustomerDataService customerDataService;
+	private final LoanDao loanDao;
+	private final CustomerDataDao customerDataService;
 
-	public LoanController(LoanService loanService, CustomerDataService customerDataService) {
-		this.loanService = loanService;
+	public LoanController(LoanDao loanDao, CustomerDataDao customerDataService) {
+		this.loanDao = loanDao;
 		this.customerDataService = customerDataService;
 	}
 
@@ -34,7 +34,7 @@ class LoanController {
 	public void addLoan(@Valid @RequestBody CreateLoanRequest createLoanRequest) {
 		LOGGER.info("Loan for customer: {}", createLoanRequest);
 		Customer customerData = customerDataService.getCustomerData(createLoanRequest.getCustomerLogin());
-		loanService.addLoan(mapToLoan(createLoanRequest, customerData.getId()));
+		loanDao.addLoan(mapToLoan(createLoanRequest, customerData.getId()));
 	}
 
 	private Loan mapToLoan(CreateLoanRequest createLoanRequest, int customerId) {
@@ -46,7 +46,7 @@ class LoanController {
 		LOGGER.info("Loan for customer: {}", customerLogin);
 		Customer customerData = customerDataService.getCustomerData(customerLogin);
 		LOGGER.info("Get customer data: {} ", customerData);
-		return loanService.getLoanList(customerData.getId())
+		return loanDao.getLoanList(customerData.getId())
 				.stream()
 				.map(LoanDto::from)
 				.collect(toList());

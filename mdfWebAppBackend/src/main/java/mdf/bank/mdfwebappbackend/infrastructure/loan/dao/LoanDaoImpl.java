@@ -1,11 +1,12 @@
-package mdf.bank.mdfwebappbackend.domain.loan.service;
+package mdf.bank.mdfwebappbackend.infrastructure.loan.dao;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import mdf.bank.mdfwebappbackend.domain.loan.model.Loan;
+import mdf.bank.mdfwebappbackend.domain.loan.dao.LoanDao;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -13,16 +14,17 @@ import java.util.List;
 /**
  * @author Mateusz Dąbrowski
  */
-@Service
-public class LoanService {
+@Repository
+public class LoanDaoImpl implements LoanDao {
 
 	private static final String HTTP_MDF_LOAN_AND_DEPOSIT = "http://mdfLoanAndDeposit";
 	private final RestTemplate restTemplate;
 
-	public LoanService(RestTemplate restTemplate) {
+	public LoanDaoImpl(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 
+	@Override
 	@HystrixCommand
 	public void addLoan(Loan loan) {
 		restTemplate.exchange(
@@ -31,6 +33,7 @@ public class LoanService {
 				new HttpEntity<>(loan), String.class);
 	}
 
+	@Override
 	@HystrixCommand
 	public List<Loan> getLoanList(long customerId) {
 		return restTemplate.exchange(

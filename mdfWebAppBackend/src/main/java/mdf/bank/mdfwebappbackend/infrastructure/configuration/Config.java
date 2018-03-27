@@ -1,4 +1,4 @@
-package mdf.bank.mdfwebappbackend.configuration;
+package mdf.bank.mdfwebappbackend.infrastructure.configuration;
 
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;

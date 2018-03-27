@@ -1,4 +1,4 @@
-package mdf.bank.mdfwebappbackend.domain.loan.controller;
+package mdf.bank.mdfwebappbackend.application.loan.controller;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

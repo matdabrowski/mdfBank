@@ -1,4 +1,4 @@
-package mdf.bank.mdfwebappbackend.domain.loan.controller;
+package mdf.bank.mdfwebappbackend.application.loan.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +22,7 @@ class LoanDto {
 	private LocalDateTime startDate;
 
 	static LoanDto from(Loan loan) {
-		return new LoanDto(loan.getAmount(), loan.getPeriod(), loan.getStatus(), loan.getStartDate());
+		return new LoanDto(loan
+				.getAmount(), loan.getPeriod(), loan.getStatus(), loan.getStartDate());
 	}
 }

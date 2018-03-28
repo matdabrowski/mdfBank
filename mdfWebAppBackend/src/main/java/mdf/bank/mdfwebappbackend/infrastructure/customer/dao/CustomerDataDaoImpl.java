@@ -3,6 +3,7 @@ package mdf.bank.mdfwebappbackend.infrastructure.customer.dao;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import mdf.bank.mdfwebappbackend.domain.customer.model.Customer;
 import mdf.bank.mdfwebappbackend.domain.customer.dao.CustomerDataDao;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Mateusz Dąbrowski
  */
 @Repository
+@Profile("prod")
 public class CustomerDataDaoImpl implements CustomerDataDao {
 
 	private final RestTemplate restTemplate;

@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 class CustomerController {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-	private final CustomerDataDao customerDataService;
+	private final CustomerDataDao customerDataDao;
 
-	public CustomerController(CustomerDataDao customerDataService) {
-		this.customerDataService = customerDataService;
+	public CustomerController(CustomerDataDao customerDataDao) {
+		this.customerDataDao = customerDataDao;
 	}
 
 	@GetMapping("/data/{customerLogin}")
 	public CustomerResponse getCustomer(@PathVariable("customerLogin") int customerLogin) {
 		logger.info("Request for id {}", customerLogin);
-		Customer customer = customerDataService.getCustomerData(customerLogin);
+		Customer customer = customerDataDao.getCustomerData(customerLogin);
 		logger.info("Customer Data {}", customer);
 		return new CustomerResponse(customer.getLogin(), customer.getFirstName(), customer.getLastName());
 	}

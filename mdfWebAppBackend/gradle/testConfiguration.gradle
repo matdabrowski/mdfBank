@@ -1,0 +1,39 @@
+/**
+ * Common test configuration:
+ * - Integration test configuration
+ */
+
+sourceSets {
+    integrationTest {
+        def integrationTestSrcPath = 'src/integrationTest/'
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file(integrationTestSrcPath + 'java')
+        }
+        resources.srcDir file(integrationTestSrcPath + 'resources')
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    //tests are always out-of-date
+    outputs.upToDateWhen { false }
+}
+
+// run testConfiguration while build
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+idea {
+    module {
+        testSourceDirs += project.sourceSets.integrationTest.java.srcDirs
+        testSourceDirs += project.sourceSets.integrationTest.resources.srcDirs
+    }
+}
